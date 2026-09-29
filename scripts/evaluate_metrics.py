@@ -52,8 +52,8 @@ def evaluate_rouge_l(results: list[dict]) -> list[float]:
 def evaluate_bertscore(results: list[dict], batch_size: int = 32) -> list[float]:
     """Computes BERTScore F1 scores for semantic similarity."""
     print("[*] Computing BERTScore (semantic similarity using contextual embeddings)...")
-    references = [item.get("reference_answer", "") for item in results]
-    candidates = [item.get("generated_answer", "") for item in results]
+    references = [(item.get("reference_answer") or "").strip() or "No answer." for item in results]
+    candidates = [(item.get("generated_answer") or "").strip() or "No answer provided." for item in results]
     
     P, R, F1 = bert_score(candidates, references, lang="en", verbose=False, batch_size=batch_size)
     f1_list = [round(score.item(), 4) for score in F1]
@@ -84,7 +84,7 @@ def evaluate_llm_judge(results: list[dict], judge_model: str = "llama3.2:3b") ->
                 response = ollama.chat(
                     model=judge_model,
                     messages=[{"role": "user", "content": prompt}],
-                    options={"temperature": 0.0}  # greedy decoding for deterministic grading
+                    options={"temperature": 0.0, "num_predict": 16}  # greedy decoding for deterministic grading
                 )
                 text = response["message"]["content"].strip()
                 # Find digits between 1 and 5

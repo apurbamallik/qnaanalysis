@@ -736,7 +736,7 @@ def main():
             except Exception as e:
                 st.warning(f"Wilcoxon test unavailable: {e}")
         else:
-            st.info("ℹ️ Single-model baseline active (`llama3.2:3b`). When additional open-source models (e.g., `mistral:7b`, `phi3:mini`, `gemma2:2b`, `qwen2.5:3b`) are benchmarked, pairwise Wilcoxon significance matrices will automatically populate here.")
+            st.info("ℹ️ Single-model baseline active (`llama3.2:3b`). When additional open-source models (e.g., `mistral:7b`, `phi3:mini`, `gemma2:2b`, `qwen2.5:3b`, `deepseek-r1:7b`) are benchmarked, pairwise Wilcoxon significance matrices will automatically populate here.")
 
     # =========================================================
     # TAB 5: RESEARCH PAPER & CITATION

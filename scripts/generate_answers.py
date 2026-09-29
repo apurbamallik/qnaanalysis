@@ -146,7 +146,7 @@ def main():
     parser = argparse.ArgumentParser(description="Multi-Model Answer Generation Engine for EduBench-Local")
     parser.add_argument("--dataset", type=str, default="dataset_sample.json", help="Path to input dataset JSON")
     parser.add_argument("--output", type=str, default="raw_answers.json", help="Path to save raw answers JSON")
-    parser.add_argument("--models", nargs="+", default=["llama3.2:3b", "mistral:7b", "gemma2:2b", "phi3:mini", "qwen2.5:3b"],
+    parser.add_argument("--models", nargs="+", default=["llama3.2:3b", "mistral:7b", "gemma2:2b", "phi3:mini", "qwen2.5:3b", "deepseek-r1:7b"],
                         help="List of Ollama models to benchmark")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of questions to process")
     args = parser.parse_args()
